@@ -12,10 +12,10 @@ BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        NumericVector x = Rcpp::as<NumericVector >(xSEXP);
-        NumericVector t = Rcpp::as<NumericVector >(tSEXP);
-        double rho = Rcpp::as<double >(rhoSEXP);
-        bool tau = Rcpp::as<bool >(tauSEXP);
+        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< NumericVector >::type t(tSEXP );
+        Rcpp::traits::input_parameter< double >::type rho(rhoSEXP );
+        Rcpp::traits::input_parameter< bool >::type tau(tauSEXP );
         double __result = GetL(x, t, rho, tau);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }

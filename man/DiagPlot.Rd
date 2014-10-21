@@ -2,8 +2,8 @@
 \alias{DiagPlot}
 \title{Diagnostic plot for BCPA}
 \usage{
-  DiagPlot(windowsweep, type = c("smooth", "flat")[1],
-    plotme = TRUE, values = FALSE, ...)
+DiagPlot(windowsweep, type = c("smooth", "flat")[1], plotme = TRUE,
+  values = FALSE, ...)
 }
 \arguments{
   \item{windowsweep}{a \code{windowsweep} object, i.e. the
@@ -22,13 +22,13 @@
   \code{\link{PartitionParameters}} function.}
 }
 \value{
-  If \code{values} is TRUE, returnn the values of the
-  standardized residuals.
+If \code{values} is TRUE, returnn the values of the
+standardized residuals.
 }
 \description{
-  Draws diagnostic plots for BCPA analysis.  Specifically:
-  a qqplot, a histogram (with a N(0,1) density curve), and
-  an acf of the standardized residuals of an analysis.
+Draws diagnostic plots for BCPA analysis.  Specifically: a
+qqplot, a histogram (with a N(0,1) density curve), and an
+acf of the standardized residuals of an analysis.
 }
 \examples{
 data(Simp)
@@ -41,9 +41,9 @@ DiagPlot(Simp.ws, type="flat")
 # The Simp's diagnostic plots are excellent.
 }
 \author{
-  Eliezer Gurarie
+Eliezer Gurarie
 }
 \seealso{
-  \code{\link{PartitionParameters}}
+\code{\link{PartitionParameters}}
 }
 

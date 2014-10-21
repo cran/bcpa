@@ -2,8 +2,7 @@
 \alias{plot.track}
 \title{Plot Track}
 \usage{
-  \method{plot}{track} (x, pch = 19,
-    col = rgb(0, 0, 0, 0.2), ...)
+\method{plot}{track}(x, pch = 19, col = rgb(0, 0, 0, 0.2), ...)
 }
 \arguments{
   \item{x}{object of class "track" to plot}
@@ -15,7 +14,7 @@
   \item{...}{other arguments to pass to \code{plot}}
 }
 \description{
-  Default method for plotting tracks
+Default method for plotting tracks
 }
 \examples{
 data(Simp)

@@ -6,7 +6,7 @@
 #' @param type whether to plot smooth or flat bcpa output
 #' @param threshold for smooth BCPA, this is the minimum number of windows that must have identified a given changepoint to be illustrated.
 #' @param clusterwidth for flat BCPA, this is the temporal range within which change points are considered to be within the same cluster. 
-#' @param col.cp color of the vertical change point pars
+#' @param col.cp,col.mean,col.sd color of the vertical change points, mean estimate, and prediction interval (mu +- sigma), respectively. 
 #' @param pt.cex expansion coefficient for point sizes.
 #' @param legend logical - whether to draw a legend or not. 
 #' @param rho.where where to place the legend for the time-scale / auto-correlation.  Can be one of "nowhere", "top", "bottom", "left", "right", "topleft", "topright", "bottomright", "bottomleft"
@@ -31,7 +31,7 @@
 plot.bcpa <- 
   function (x, type = c("smooth", "flat")[1], threshold = 3, clusterwidth = 1, 
             col.cp = rgb(0.5, 0, 0.5, 0.5), pt.cex = 0.5, legend = TRUE, 
-            rho.where = "topleft", mu.where = "nowhere", ...) 
+            rho.where = "topleft", mu.where = "nowhere", col.sd="red", col.mean="black",...) 
   {
     windowsweep <- x
     x <- windowsweep$x
@@ -58,9 +58,9 @@ plot.bcpa <-
       rho.int <- round(rho.scaled * 999 + 1)
       palette(topo.colors(1000))
       points(t.POSIX, x, pch = 21, col="darkgrey", bg = rho.int, cex = pt.cex, lwd=0.5)
-      lines(t.POSIX, pp$mu.hat, lwd = 1.5)
-      lines(t.POSIX, pp$mu.hat + pp$s.hat, col = "red", lwd = 1.5)
-      lines(t.POSIX, pp$mu.hat - pp$s.hat, col = "red", lwd = 1.5)
+      lines(t.POSIX, pp$mu.hat, lwd = 1.5, col.mean)
+      lines(t.POSIX, pp$mu.hat + pp$s.hat, col = col.sd, lwd = 1.5)
+      lines(t.POSIX, pp$mu.hat - pp$s.hat, col = col.sd, lwd = 1.5)
       rho.hat <- pp$rho.hat
     }
     
@@ -86,12 +86,12 @@ plot.bcpa <-
       t.mid <- (windowsweep$t[-1]+windowsweep$t[-length(windowsweep$t)])/2
       
       segments(phases$t0.POSIX, phases$mu.hat, phases$t1.POSIX, 
-               phases$mu.hat, lwd = 1.5)
+               phases$mu.hat, lwd = 1.5, col=col.mean)
       segments(phases$t0.POSIX, phases$mu.hat - phases$s.hat, 
-               phases$t1.POSIX, phases$mu.hat - phases$s.hat, col = "red", 
+               phases$t1.POSIX, phases$mu.hat - phases$s.hat, col = col.sd, 
                lwd = 1.5)
       segments(phases$t0.POSIX, phases$mu.hat + phases$s.hat, 
-               phases$t1.POSIX, phases$mu.hat + phases$s.hat, col = "red", 
+               phases$t1.POSIX, phases$mu.hat + phases$s.hat, col = col.sd, 
                lwd = 1.5)
       abline(v = phases$t0.POSIX[-1], lwd = breaks$size/max(breaks$size) * 4, col = col.cp)
     }

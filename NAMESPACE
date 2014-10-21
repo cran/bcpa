@@ -3,9 +3,6 @@ useDynLib(bcpa)
 import(plyr) 
 import(Rcpp)
 
-# only load the function "clusters" from package "intervals"
-importFrom(intervals, clusters)
-
 # This says use all functions that start with a letter
 exportPattern("^[[:alpha:]]+")
 

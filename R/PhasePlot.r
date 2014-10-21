@@ -6,6 +6,7 @@
 #' @param type whether to plot smooth or flat bcpa output
 #' @param clusterwidth for flat BCPA, this is the temporal range within which change points are considered to be within the same cluster. 
 #' @param ... additional arguments passed to the \code{plot} base function.
+#' @param legend.where where to place the tau legend (see \code{\link{legend}}).
 #' @seealso \code{\link{WindowSweep}}, \code{\link{PartitionParameters}}
 #' @author Eliezer Gurarie
 #' @examples
@@ -17,7 +18,7 @@
 #' 
 #' PhasePlot(Simp.ws)
 
-PhasePlot <- function(windowsweep, type = c("smooth","flat")[1], clusterwidth = 1, ...)
+PhasePlot <- function(windowsweep, type = c("smooth","flat")[1], clusterwidth = 1, ..., legend.where="bottomright")
 {
   partition <- PartitionParameters(windowsweep, type, clusterwidth)
   mu.hat <- partition$mu.hat
@@ -32,7 +33,7 @@ PhasePlot <- function(windowsweep, type = c("smooth","flat")[1], clusterwidth = 
     plot(mu.hat, s.hat, type="l", col="grey", xlab=expression(hat(mu)),  ylab=expression(hat(sigma)), ...)
     points(mu.hat, s.hat, cex=sqrt((rho.hat - min(rho.hat, na.rm=1))/(max(rho.hat, na.rm=1) - min(rho.hat, na.rm=1))*4), 
            col=rho.int, pch=19)
-    legend("bottom", pt.cex = sqrt(c(.5,1,2,4)), pch = 19, title=expression(hat(tau)), col = 250*c(.5,1,2,4), bty="n",
+    legend(legend.where, pt.cex = sqrt(c(.5,1,2,4)), pch = 19, title=expression(hat(tau)), col = 250*c(.5,1,2,4), bty="n",
            legend=signif(seq(.2,1,length=4)*max(rho.hat, na.rm=TRUE),2))
     palette("default")
     points(mu.hat[1], s.hat[1], pch=24, bg="darkgreen", cex=2, col="darkgrey")
@@ -51,7 +52,7 @@ PhasePlot <- function(windowsweep, type = c("smooth","flat")[1], clusterwidth = 
     plot(mu.hat, s.hat, type="l", col="grey", xlab=expression(hat(mu)),  ylab=expression(hat(sigma)), ...)
     points(mu.hat, s.hat, cex=sqrt(N.count), 
            col=rho.int, pch=19)
-    legend("bottomright", pt.cex =2, pch = 19, title=expression(hat(tau)), col = 250*c(.5,1,2,4), 
+    legend(legend.where, pt.cex =2, pch = 19, title=expression(hat(tau)), col = 250*c(.5,1,2,4), 
            legend=signif(seq(.2,1,length=4)*max(rho.hat, na.rm=TRUE),2))
     palette("default")
   }

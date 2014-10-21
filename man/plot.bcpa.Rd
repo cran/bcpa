@@ -2,11 +2,10 @@
 \alias{plot.bcpa}
 \title{Plotting method for BCPA output}
 \usage{
-  \method{plot}{bcpa} (x, type = c("smooth", "flat")[1],
-    threshold = 3, clusterwidth = 1,
-    col.cp = rgb(0.5, 0, 0.5, 0.5), pt.cex = 0.5,
-    legend = TRUE, rho.where = "topleft",
-    mu.where = "nowhere", ...)
+\method{plot}{bcpa}(x, type = c("smooth", "flat")[1], threshold = 3,
+  clusterwidth = 1, col.cp = rgb(0.5, 0, 0.5, 0.5), pt.cex = 0.5,
+  legend = TRUE, rho.where = "topleft", mu.where = "nowhere",
+  col.sd = "red", col.mean = "black", ...)
 }
 \arguments{
   \item{x}{a \code{windowsweep} object, i.e. the output of
@@ -22,7 +21,9 @@
   range within which change points are considered to be
   within the same cluster.}
 
-  \item{col.cp}{color of the vertical change point pars}
+  \item{col.cp,col.mean,col.sd}{color of the vertical
+  change points, mean estimate, and prediction interval (mu
+  +- sigma), respectively.}
 
   \item{pt.cex}{expansion coefficient for point sizes.}
 
@@ -40,10 +41,10 @@
   base function.}
 }
 \description{
-  Plotting method for the output of a BCPA analysis with
-  vertical break points, superimposed estimates of the
-  partitioned mean and variance estimates and color-coded
-  autocorrelation estimates.
+Plotting method for the output of a BCPA analysis with
+vertical break points, superimposed estimates of the
+partitioned mean and variance estimates and color-coded
+autocorrelation estimates.
 }
 \examples{
 if(!exists("Simp.ws"))
@@ -59,9 +60,9 @@ plot(Simp.ws, threshold=7)
 plot(Simp.ws, type="flat", clusterwidth=3, legend=FALSE)
 }
 \author{
-  Eliezer Gurarie
+Eliezer Gurarie
 }
 \seealso{
-  Plots output of the \code{\link{WindowSweep}} function.
+Plots output of the \code{\link{WindowSweep}} function.
 }
 

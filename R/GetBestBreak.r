@@ -12,12 +12,13 @@
 #' @seealso  \code{\link{WindowSweep}} which uses it, and \code{\link{GetDoubleL}} for the likelihood estimation. 
 #' @author Eliezer Gurarie
 #' 
+#' @examples 
 #' # An example with a single break:
-# x <- c(arima.sim(list(ar = 0.9), 20) + 10, arima.sim(list(ar = 0.1), 20)) 
-# t <- 1:length(x)
-# plot(t,x, type="l")
-# (bb <- GetBestBreak(x,t, tau=FALSE))
-# abline(v = bb[2], col=2)
+#' x <- c(arima.sim(list(ar = 0.9), 20) + 10, arima.sim(list(ar = 0.1), 20)) 
+#' t <- 1:length(x)
+#' plot(t,x, type="l")
+#' (bb <- GetBestBreak(x,t, tau=FALSE))
+#' abline(v = bb[2], col=2)
 
 GetBestBreak <-
   function(x,t,range=0.6, ...)

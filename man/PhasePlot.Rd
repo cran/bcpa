@@ -2,8 +2,8 @@
 \alias{PhasePlot}
 \title{Phase plot of BCPA output}
 \usage{
-  PhasePlot(windowsweep, type = c("smooth", "flat")[1],
-    clusterwidth = 1, ...)
+PhasePlot(windowsweep, type = c("smooth", "flat")[1], clusterwidth = 1, ...,
+  legend.where = "bottomright")
 }
 \arguments{
   \item{windowsweep}{\code{windowsweep} object, i.e. the
@@ -17,11 +17,14 @@
 
   \item{...}{additional arguments passed to the \code{plot}
   base function.}
+
+  \item{legend.where}{where to place the tau legend (see
+  \code{\link{legend}}).}
 }
 \description{
-  Behavioral phase plot of BCPA output.  Mean and standard
-  deviation are on the x and y axis.  Size and color of
-  points represent the time scale of autocorrelation
+Behavioral phase plot of BCPA output.  Mean and standard
+deviation are on the x and y axis.  Size and color of
+points represent the time scale of autocorrelation
 }
 \examples{
 if(!exists("Simp.ws"))
@@ -33,10 +36,10 @@ if(!exists("Simp.ws"))
 PhasePlot(Simp.ws)
 }
 \author{
-  Eliezer Gurarie
+Eliezer Gurarie
 }
 \seealso{
-  \code{\link{WindowSweep}},
-  \code{\link{PartitionParameters}}
+\code{\link{WindowSweep}},
+\code{\link{PartitionParameters}}
 }
 

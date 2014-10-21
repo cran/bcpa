@@ -3,8 +3,8 @@
 #' The VT table containes speeds, steplengths, orientations and other summaries derived from a track. The output of this function is (typically) meant to feed the \code{\link{WindowSweep}} function. 
 #' 
 #' @param Data a track to analyze.  Must contain columns: X, Y and Time (as a POSIX object).  The \code{track} class is a robust entry.  
-#' @param units the time units for the analysis one of \code{sec, min, hour, day}.
-#' @param skiplast filters away last step
+#' @param units the time units for the analysis; one of \code{sec, min, hour, day}.
+#' @param skiplast filters away last step.
 #' 
 #' @return a data frame with the following columns:
 #' \item{Z.start, Z.end}{the start and end locations (as complex coordinates)}
@@ -20,6 +20,14 @@
 #' @seealso \code{\link{WindowSweep}}
 #' @examples
 #' data(Simp)
+#' plot(Simp)
+#' Simp.VT <- GetVT(Simp)
+#' head(Simp.VT)
+#' # Distribution of estimated speeds
+#' hist(Simp.VT$V, col="grey", breaks=20)
+#' # Distribution of turning angles
+#' require(circular)
+#' rose.diag(Simp.VT$Theta, bins=24)
 
 GetVT <- function(Data, units = "hour", skiplast=TRUE)
 {

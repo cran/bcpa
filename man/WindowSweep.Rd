@@ -2,9 +2,8 @@
 \alias{WindowSweep}
 \title{Perform window sweep for BCPA}
 \usage{
-  WindowSweep(data, variable, windowsize = 50,
-    windowstep = 1, K = 2, tau = TRUE, range = 0.6,
-    progress = TRUE, plotme = FALSE, ...)
+WindowSweep(data, variable, windowsize = 50, windowstep = 1, K = 2,
+  tau = TRUE, range = 0.6, progress = TRUE, plotme = FALSE, ...)
 }
 \arguments{
   \item{data}{the data to be analyzed.  Most typically,
@@ -50,20 +49,20 @@
   \code{\link{PartitionParameters}} function.}
 }
 \value{
-  an object of class \code{windowsweep}, which is a list
-  containing: \item{ws}{a data frame containing the change
-  point, selected model, and parameter estimates}
-  \item{x}{the response variable} \item{t}{the time
-  variable - in the units specified in the data object}
-  \item{t.POSIX}{the time variable as a POSIX objects
-  (contianing Y-M-D H:S)} \item{windowsize}{the window
-  size} \item{windowstep}{the window step size}
+an object of class \code{windowsweep}, which is a list
+containing: \item{ws}{a data frame containing the change
+point, selected model, and parameter estimates}
+\item{x}{the response variable} \item{t}{the time variable
+- in the units specified in the data object}
+\item{t.POSIX}{the time variable as a POSIX objects
+(contianing Y-M-D H:S)} \item{windowsize}{the window size}
+\item{windowstep}{the window step size}
 }
 \description{
-  This is the workhorse function of the BCPA.  It performs
-  a sweep of the time series, searching for most
-  significant change points and identifying the
-  parsimonious model according to an adjusted BIC.
+This is the workhorse function of the BCPA.  It performs a
+sweep of the time series, searching for most significant
+change points and identifying the parsimonious model
+according to an adjusted BIC.
 }
 \examples{
 data(Simp)
@@ -77,12 +76,12 @@ PathPlot(Simp, Simp.ws, type="flat")
 DiagPlot(Simp.ws)
 }
 \author{
-  Eliezer Gurarie
+Eliezer Gurarie
 }
 \seealso{
-  for internal functions: \code{\link{GetModels}},
-  \code{\link{GetBestBreak}}, \code{\link{GetDoubleL}}; for
-  summarizing output: \code{\link{ChangePointSummary}}; for
-  plotting output: \code{\link{plot.bcpa}}
+for internal functions: \code{\link{GetModels}},
+\code{\link{GetBestBreak}}, \code{\link{GetDoubleL}}; for
+summarizing output: \code{\link{ChangePointSummary}}; for
+plotting output: \code{\link{plot.bcpa}}
 }
 

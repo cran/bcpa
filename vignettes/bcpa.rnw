@@ -35,7 +35,8 @@ Department of Statistics\\
 School of Environmental and Forest Sciences\\
 University of Washington, Seattle\\
 \url{eliezg@u.washington.edu}}
-\date{October 2013}
+\date{October 2013\\
+Version 1.1 updated: October 2014}
 
 \begin{document}
 
@@ -134,7 +135,7 @@ Using the \texttt{GetRho} function to estimate $\rho$ or $\tau$:
 GetRho(x, t, tau=FALSE)
 GetRho(x, t, tau=TRUE)
 @
-{\bf Future work:  It is straightforward to obtain confidence intervals around this estimate.}
+{\bf Future work:  It is straightforward to obtain approximate confidence intervals around this estimate using the Hessian of the log-likelihood.}
 
 \subsection{Speeds and turning angles}
 
@@ -156,7 +157,14 @@ head(Simp)
 plot(Simp)
 @
 \ec
-The \texttt{Simp} objects is of class ``track'', which is simply a data frame with columns $X$, $Y$ and $T$, and the \texttt{bcpa} package contains a plotting method for  a track of this form with a green circle illustrating the start and a red rhombus indicating the end of the track.
+The \texttt{Simp} objects is of class ``track'', which is simply a data frame with columns $X$, $Y$ and $T$, and the \texttt{bcpa} package contains a plotting method for a track of this form with a green circle illustrating the start and a red rhombus indicating the end of the track.  The \texttt{MakeTrack} function was added to facilitate the creation of a ``track'' class object, e.g.:
+<<MakeTrack>>=
+X <- cumsum(arima.sim(n=100, model=list(ar=0.8)))
+Y <- cumsum(arima.sim(n=100, model=list(ar=0.8)))
+Time <- 1:100
+mytrack <- MakeTrack(X,Y,Time)
+plot(mytrack)
+@
 
 To obtain the step length and turning angles, use the \texttt{GetVT} function, which decomposes the data into single step and all the relevant statistics:
 <<>>=

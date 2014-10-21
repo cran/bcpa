@@ -1,7 +1,6 @@
 #include <Rcpp.h>
 #include <math.h>
-
-#define pi atan(1.0)*4.0
+#include <Rmath.h> // use for normal distribution
 
 using namespace Rcpp;
 
@@ -11,12 +10,6 @@ NumericVector SubSet(NumericVector A, int start, int end)
 {
 	NumericVector B(A.begin() + start, A.begin() + end);
 	return B;
-}
-
-double DNorm(double x, double mu, double sigma)
-{
-	double pdf = 1.0 / ( sigma * sqrt(2.0 * pi) ) * exp( -0.5 * pow( (x-mu)/sigma, 2.0 ) );
-	return pdf;
 }
 
 // [[Rcpp::export]]
@@ -53,7 +46,7 @@ double GetL(NumericVector x, NumericVector t, double rho, bool tau = false)
 	double LL = 0;
 	
 	for(int i = 0; i < N; i++)
-   LL = LL + log(DNorm(Xend[i], Mu[i], Sigma[i]));
+   LL = LL + R::dnorm(Xend[i], Mu[i], Sigma[i], 1);
 
 	return LL;
 }

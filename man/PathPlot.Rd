@@ -2,10 +2,9 @@
 \alias{PathPlot}
 \title{Path plot of BCPA output}
 \usage{
-  PathPlot(Data, windowsweep,
-    type = c("smooth", "flat")[1], clusterwidth = 1,
-    plotlegend = FALSE, tauwhere = "topleft", n.legend = 5,
-    ncol.legend = 1, bty.legend = "n", ...)
+PathPlot(Data, windowsweep, type = c("smooth", "flat")[1], clusterwidth = 1,
+  plotlegend = FALSE, tauwhere = "topleft", n.legend = 5,
+  ncol.legend = 1, bty.legend = "n", ...)
 }
 \arguments{
   \item{Data}{the track data to be plotted - most
@@ -38,10 +37,10 @@
   \code{plot} base function.}
 }
 \description{
-  Plots the animal's trajectory, with segments color-coded
-  according to the time scale / auto-correlation of the
-  BCPA output, and width of segments proportional to the
-  estimated mean of the BCPA.
+Plots the animal's trajectory, with segments color-coded
+according to the time scale / auto-correlation of the BCPA
+output, and width of segments proportional to the estimated
+mean of the BCPA.
 }
 \examples{
 if(!exists("Simp.ws"))
@@ -54,6 +53,6 @@ PathPlot(Simp, Simp.ws, plotlegend=TRUE, n.legend=3)
 PathPlot(Simp, Simp.ws, type="flat", clusterwidth=3, plotlegend=TRUE)
 }
 \author{
-  Eliezer Gurarie
+Eliezer Gurarie
 }
 
