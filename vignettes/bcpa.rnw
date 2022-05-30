@@ -6,7 +6,6 @@
 \usepackage{amstext}
 \usepackage{graphicx}
 \usepackage{color}        
-\usepackage{multirow}
 \usepackage{setspace}
 \setlength{\parindent}{0in}
 \setlength{\parskip}{\baselineskip}
@@ -183,7 +182,7 @@ hist(Simp.VT$Theta, breaks=20, col="grey")
 
 \subsection{Obtaining a changepoint}
 
-A single changepoint in a time-series where the parameters change at some unknown timepoints $t^*$ is done by simply sweeping all possible breaks, and finding the most-likely changepoint according to the likelihood.  This is illustrated below:
+A single changepoint in a time-series where the parameters change at some unknown timepoints $t^*$ is done by sweeping all possible breaks and finding the most likely changepoint according to the likelihood.  This is illustrated below:
 
 <<OneBreak, fig.height=4, echo=-1, tidy=FALSE, cache=TRUE>>=
 set.seed(2)
@@ -192,8 +191,7 @@ mu1 <- 5; mu2 <- 3
 sigma1 <- 2; sigma2 <- 1
 rho1 <- 0.5; rho2 <- 0.5
 
-SimTS <- function(n, mu, rho, sigma)
-{
+SimTS <- function(n, mu, rho, sigma){
   X.standard <- arima.sim(n, model=list(ar = rho))
   X.standard/sd(X.standard)*sigma + mu
 }
@@ -211,7 +209,7 @@ t <- t.full[keep]
 (BB <- GetBestBreak(x,t, tau=FALSE))
 @
 
-The estimates should be fairly good (note that we are chosing to estimate $\rho$ rather than $\tau$).
+The estimates should be fairly good (note that we are choosing to estimate $\rho$ rather than $\tau$).
 \bc
 <<OneBreak2, fig.height=4, echo=-1, tidy=FALSE, out.width="0.8\\textwidth">>=
 par(bty="l")
@@ -294,7 +292,7 @@ head(Simp.ws$ws)
 
 Note that in this example, the first 4 windows detect no changes in the  parameter values (Model 0) so the values are the same to the left and to the right of each changepoint. (A minor note: the \texttt{rho1} and \texttt{rho2} columns correspond to $\tau_1$ and $\tau_2$ - i.e.~the time-scales.)  
 
-The following functions plot the output of the ``smooth'' summary, i.e.~the summary in which all the windows are averaged to obtain the ``smooth'' model.  In these plots, the vertical lines represent the significant change points, the width of the lines is proportional to the number of time that change point was selected, the black an dred lines represent the mean and standard deviation estimate, and the colors reflect the autocorrelation time-scale (bluer colors have smaller autocorrelation time scales).
+The following functions plot the output of the ``smooth'' summary, i.e.~the summary in which all the windows are averaged to obtain the ``smooth'' model.  In these plots, the vertical lines represent the significant change points, the width of the lines is proportional to the number of time that change point was selected, the black and red lines represent the mean and standard deviation estimate, and the colors reflect the autocorrelation time-scale (bluer colors have smaller autocorrelation time scales).
 
 <<BCPAsmooth, fig.width = 9, fig.height=5, out.width="\\textwidth", size="small", echo=-1, warning=FALSE>>=
 par(mfrow=c(2,1), mar=c(0,4,0,1), oma=c(4,0,1,0), bty="l")
@@ -303,7 +301,7 @@ plot(Simp.ws, type="smooth", threshold = 7)
 @
 
 
-The \texttt{threshold} parameter indicates how many of the windows that were swept over the data must have selected that changepoint for it to be considered significant.  The changepoints selected (at that threshold) are almost exactly the ones that were encoded in the original simulaiton. 
+The \texttt{threshold} parameter indicates how many of the windows that were swept over the data must have selected that changepoint for it to be considered significant.  The changepoints selected (at that threshold) are almost exactly the ones that were encoded in the original simulation. 
 
 The ``flat'' analysis first selects changepoints that it deeps significant by clustering neighboring changepoints, and then estimates a homogeneous behavior between those changepoints.  Note that by increasing the clusterwisth to 3, many of the more minor changepoints are filtered away and the resulting profile is fairly uniform.
 
@@ -351,7 +349,7 @@ This plot illustrates the qq-norm plot, the histogram and the auto-correlation f
 
 \section{Conclusions}
 
-It is hoped that this package will facilitate analysis of complex behavioral movement data.  However, it should be stressed that this is perhaps first and foremost an exploratory tool.  Its strength is that it can distill complex information into some tabulated and visual summaries that outline underlying structures.  It is also relatively fast - a long data set with tens of thousands of locations takes well under a minute to analyze on most machines.  
+We hope this package will facilitate analysis of complex behavioral movement data. However, it should be stressed that this is perhaps first and foremost an exploratory tool.  Its strength is that it can distill complex information into some tabulated and visual summaries that outline underlying structures.  It is also relatively fast - a long data set with tens of thousands of locations takes well under a minute to analyze on most machines.  
 
 That said, this tool merely \emph{describes} and does not \emph{explain} complex behavioral profiles.  The BCPA can be used to propose some appropriate movement models or behavioral hypotheses for further testing.  Alternatively, an explanatory or predictive analysis of behaviors with respect to covariates can be performed by extracting some biologically meaningful summary from the BCPA, and performing a post-hoc analysis to model the observed patterns with respect to covariates.   
 
